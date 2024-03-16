@@ -1,24 +1,21 @@
 import { useMemo, useState } from "react";
+import { CountryPayment } from "../models/CountryPayment";
 
 const useRoundUp = ({
   amount,
-  countryCode,
+  strategy,
 }: {
   amount: number;
-  countryCode: string;
+  strategy: CountryPayment;
 }) => {
   const [agreeToDonate, setAgreeToDonate] = useState<boolean>(false);
 
   const { total, tip } = useMemo(
     () => ({
-      total: agreeToDonate
-        ? countryCode === "JP"
-          ? Math.floor(amount / 100 + 1) * 100
-          : Math.floor(amount + 1)
-        : amount,
-      tip: parseFloat((Math.floor(amount + 1) - amount).toPrecision(10)),
+      total: agreeToDonate ? strategy.getRoundUpAmount(amount) : amount,
+      tip: strategy.getTip(amount),
     }),
-    [amount, agreeToDonate, countryCode]
+    [agreeToDonate, amount, strategy]
   );
 
   const updateAgreeToDonate = () => {

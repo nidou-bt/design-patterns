@@ -10,12 +10,10 @@ const DonationCheckbox = ({
   content,
 }: DonationCheckboxProps) => {
   return (
-    <div>
-      <label>
-        <input type="checkbox" onChange={onChange} checked={checked} />
-        <p>{content}</p>
-      </label>
-    </div>
+    <label style={{ display: "flex", gap: "10px" }}>
+      <input type="checkbox" onChange={onChange} checked={checked} />
+      <p>{content}</p>
+    </label>
   );
 };
 
