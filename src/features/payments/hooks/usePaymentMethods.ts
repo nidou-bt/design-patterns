@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { RemotePaymentMethod } from "../types";
 import PaymentMethod from "../models/PaymentMethod";
-import { methods } from "../data/paymentMethods";
+import { getPaymentMethods } from "../api/paymentMethodApi";
 
 const payInCash = new PaymentMethod({ name: "cash" });
 
@@ -18,18 +18,19 @@ const convertPaymentMethods = (methods: RemotePaymentMethod[]) => {
   return extended;
 };
 
+const fetchPaymentMethods = async () => {
+  const methods = await getPaymentMethods();
+  if (!methods) {
+    return [];
+  }
+  return convertPaymentMethods(methods);
+};
+
 export const usePaymentMethods = () => {
   const [paymentMethods, setPaymentMethods] = useState<PaymentMethod[]>([]);
 
   useEffect(() => {
-    const fetchPaymentMethods = async () => {
-      // const url = "https://online-ordering.com/api/payment-methods";
-      // const response = await fetch(url);
-      // const methods: RemotePaymentMethod[] = await response.json();
-      setPaymentMethods(convertPaymentMethods(methods));
-    };
-
-    fetchPaymentMethods();
+    fetchPaymentMethods().then((methods) => setPaymentMethods(methods));
   }, []);
 
   return {
