@@ -1,0 +1,14 @@
+.fileInput {
+  display: none;
+}
+
+.inputContainer {
+  display: flex;
+  flex-direction: column;
+  max-width: 500px;
+  margin-block: 16px;
+}
+
+.inputButton {
+  text-align: start;
+}

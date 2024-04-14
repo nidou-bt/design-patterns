@@ -1,0 +1,24 @@
+.dropdown:focus {
+  border: 1px solid blue;
+}
+
+.dropdown-menu {
+  border: 1px solid black;
+  max-width: 200px;
+  border-radius: 12px;
+  padding: 6px;
+}
+.item-container {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  border-radius: 12px;
+  padding-inline: 6px;
+}
+
+.item-container:hover {
+  background: aqua;
+}
+
+.item-details {
+}

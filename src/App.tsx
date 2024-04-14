@@ -1,3 +1,4 @@
+import FileTemplate from "./features/file/templates/FileTemplate";
 import { CountryPayment } from "./features/payments/models/CountryPayment";
 import PaymentTemplate from "./features/payments/templates/PaymentTemplate";
 import ProductTemplate from "./features/product/templates/ProductTemplate";
@@ -13,6 +14,7 @@ function App() {
       <PaymentTemplate amount={1333} strategy={strategy} />
 
       <ProductTemplate />
+      <FileTemplate />
     </div>
   );
 }
